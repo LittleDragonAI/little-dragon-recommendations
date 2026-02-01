@@ -8018,7 +8018,7 @@ function tA({
   `, y = Ce.img`
     margin-inline: auto;
   `;
-  return /* @__PURE__ */ te.jsxs(n, { className: "grow", children: [
+  return /* @__PURE__ */ te.jsxs(n, { children: [
     /* @__PURE__ */ te.jsx(
       y,
       {

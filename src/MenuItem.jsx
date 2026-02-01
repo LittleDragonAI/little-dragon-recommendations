@@ -103,7 +103,7 @@ export default function MenuItem({
   `;
 
   return (
-    <Container className="grow">
+    <Container>
       <ItemImage 
         src={item.image_url || fallbackImage} 
         width={244}
