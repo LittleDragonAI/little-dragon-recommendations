@@ -187,6 +187,7 @@ To suppress this warning, you need to explicitly provide the \`palette.${t}Chann
         stroke-width: 10px;
       }
     `)),M.createElement("path",{className:"cls-1",d:"M158.2,5H27.52v65.94h112.14l-67.2,60.9,11.34,42.42h34.44c18.64,0,32.14,4.08,39.96,11.43"}),M.createElement("path",{className:"cls-1",d:"M158.2,225.13c-6.45,6.37-16.58,10.03-29.46,10.03-27.3,0-49.14-12.18-70.14-33.6L6.94,252.8c28.98,31.5,68.46,52.08,125.16,52.08,9.07,0,17.79-.74,26.1-2.15"}));function Uf({storeId:e,type:t="value",mininumGrams:r=3.5,maximumGrams:n=3.5,minimumPrice:o=null,maximumPrice:i=null,count:a=3,originalMenuItemId:s=null,baseUrl:c="https://demo-api.littledragon.keithswork.com"}){const[A,f]=de.useState(null),[m,g]=de.useState(!0),[h,y]=de.useState(null),[u,b]=de.useState(""),x={value:"#32936f",exotic:"#2274a5",similar:"#e4002b",best:"#ffbf00"},S=E=>E==="best"?"Best Overall":E==="value"?"Best Value - Top Genetics":E==="exotic"?"Most Exotic":E==="similar"?`Because You Bought: ${u}`:"",O=Re.div`
+    all: reset;
     background: ${x[t]};
     padding: 6px;
     border-radius: 30px;

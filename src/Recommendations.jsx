@@ -1,4 +1,3 @@
-import "the-new-css-reset/css/reset.css";
 import { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import MenuItem from './MenuItem';
@@ -38,6 +37,7 @@ export default function Recommendations({
   }
 
   const OuterContainer = styled.div`
+    all: reset;
     background: ${outerColor[type]};
     padding: 6px;
     border-radius: 30px;
