@@ -1,3 +1,4 @@
+import "the-new-css-reset/css/reset.css";
 import { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import MenuItem from './MenuItem';
