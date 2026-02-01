@@ -42,11 +42,23 @@ export default function Recommendations({
     padding: 6px;
     border-radius: 30px;
     max-width: 1410px;
+    margin-inline: auto;
   `;
 
   const InnerContainer = styled.div`
     background: white;
     border-radius: 30px;
+    margin-inline: auto;
+  `;
+
+  const MessageContainer = styled.div`
+    padding: 3rem;
+    text-align: center;
+  `;
+
+  const Message = styled.p`
+    margin-top: 1rem;
+    color: rgb(75, 85, 99);
   `;
 
   const Header = styled.h2`
@@ -57,6 +69,19 @@ export default function Recommendations({
     line-height: 1;
     font-weight: 800;
     text-transform: uppercase;
+  `;
+
+  const ItemsContainer = styled.div`
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+  `;
+
+  const Item = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
   `;
 
   useEffect(() => {
@@ -92,47 +117,45 @@ export default function Recommendations({
   }, [storeId, type, mininumGrams, maximumGrams, minimumPrice, maximumPrice, count, baseUrl, originalMenuItemId]);
 
   return (
-    <OuterContainer className="mx-auto">
+    <OuterContainer>
       <Header>{typeToName(type)}</Header>
-      <InnerContainer className="mx-auto">
+      <InnerContainer>
         {loading && (
-          <div className="p-12 text-center">
-            <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-            <p className="mt-4 text-gray-600">Loading recommendations...</p>
-          </div>
+          <MessageContainer>
+            {/* <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div> */}
+            <Message>Loading recommendations...</Message>
+          </MessageContainer>
         )}
 
         {error && type === "similar" && originalMenuItemId === null && (
-          <div className="p-12 text-center">
-            <p className="mt-4 text-gray-600">No original item selected to do a recommendation of similar items</p>
-          </div>
+          <MessageContainer>
+            <Message>No original item selected to do a recommendation of similar items</Message>
+          </MessageContainer>
         )}
 
         {!loading && !error && (!recommendations || recommendations.length === 0) && (
-          <div className="p-12 text-center">
-            <p className="mt-4 text-gray-600">No recommendations found</p>
-          </div>
+          <MessageContainer>
+            <Message>No recommendations found</Message>
+          </MessageContainer>
         )}
 
         {!loading && !error && recommendations && (
-          <div className="p-6">
-            <div className="flex flex-row gap-6">
-              {recommendations.map((item, index) => (
-                <div key={index} className="flex flex-row items-end">
-                  {index === 0 &&
-                  <FirstItemLabel height={300} style={{ color: outerColor[type], opacity: 0.5, marginBottom: "50px" }} />
-                  }
-                  {index === 1 &&
-                  <SecondItemLabel height={300} style={{ color: outerColor[type], opacity: 0.5, marginBottom: "50px" }} />
-                  }
-                  {index === 2 &&
-                  <ThirdItemLabel height={300} style={{ color: outerColor[type], opacity: 0.5, marginBottom: "50px" }} />
+          <ItemsContainer>
+            {recommendations.map((item, index) => (
+              <Item key={index}>
+                {index === 0 &&
+                <FirstItemLabel height={300} style={{ color: outerColor[type], opacity: 0.5, marginBottom: "50px" }} />
                 }
-                <MenuItem item={item} />
-                </div>
-              ))}
-            </div>
-          </div>
+                {index === 1 &&
+                <SecondItemLabel height={300} style={{ color: outerColor[type], opacity: 0.5, marginBottom: "50px" }} />
+                }
+                {index === 2 &&
+                <ThirdItemLabel height={300} style={{ color: outerColor[type], opacity: 0.5, marginBottom: "50px" }} />
+              }
+              <MenuItem item={item} />
+              </Item>
+            ))}
+          </ItemsContainer>
         )}
       </InnerContainer>
     </OuterContainer>

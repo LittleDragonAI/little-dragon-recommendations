@@ -50,8 +50,5 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/LittleDragonAI/little-dragon-recommendations.git"
-  },
-  "dependencies": {
-    "the-new-css-reset": "^1.11.3"
   }
 }

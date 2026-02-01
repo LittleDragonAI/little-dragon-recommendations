@@ -98,13 +98,16 @@ export default function MenuItem({
     padding: 10px 20px;
   `;
 
+  const ItemImage = styled.img`
+    margin-inline: auto;
+  `;
+
   return (
     <Container className="grow">
-      <img 
+      <ItemImage 
         src={item.image_url || fallbackImage} 
         width={244}
         height={218}
-        className="mx-auto"
       />
       <InnerContainer>
         <StrainName>{item.strain}</StrainName>
