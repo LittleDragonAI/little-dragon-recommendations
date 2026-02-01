@@ -37,7 +37,6 @@ export default function Recommendations({
   }
 
   const OuterContainer = styled.div`
-    all: reset;
     background: ${outerColor[type]};
     padding: 6px;
     border-radius: 30px;

@@ -8089,7 +8089,6 @@ function cA({
     similar: "#e4002b",
     best: "#ffbf00"
   }, S = (Y) => Y === "best" ? "Best Overall" : Y === "value" ? "Best Value - Top Genetics" : Y === "exotic" ? "Most Exotic" : Y === "similar" ? `Because You Bought: ${u}` : "", R = Ce.div`
-    all: reset;
     background: ${x[t]};
     padding: 6px;
     border-radius: 30px;
