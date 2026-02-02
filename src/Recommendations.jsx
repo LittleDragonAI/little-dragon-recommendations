@@ -36,7 +36,7 @@ export default function Recommendations({
         }
         
         const data = await response.json();
-        setAvailableRecommendations(data);
+        setAvailableRecommendations(data || []);
       } catch (err) {
         setError(err.message);
         setRecommendations(null);
