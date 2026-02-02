@@ -1,96 +1,34 @@
-import { useState, useEffect } from 'react';
-import styled from '@emotion/styled';
-import MenuItem from './MenuItem';
-import FirstItemLabel from './assets/1.svg?react';
-import SecondItemLabel from './assets/2.svg?react';
-import ThirdItemLabel from './assets/3.svg?react';
+import { useState, useEffect, useRef } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import RecommendationsList from './RecommendationsList';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import './style.css';
 
 export default function Recommendations({
-    storeId, 
-    type = 'value',
-    mininumGrams = 3.5,
-    maximumGrams = 3.5,
-    minimumPrice = null,
-    maximumPrice = null,
-    count = 3,
-    originalMenuItemId = null,
-    baseUrl = 'https://demo-api.littledragon.keithswork.com'
+    storeSlug, 
+    productType,
+    baseUrl = 'https://demo-api.littledragon.keithswork.com',
+    onAddToCart = null,
+    userId = null
   }) {
-  const [recommendations, setRecommendations] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [originalMenuItemName, setOriginalMenuItemName] = useState('');
 
-  const outerColor = {
-    value: "#32936f",
-    exotic: "#2274a5",
-    similar: "#e4002b",
-    best: "#ffbf00"
-  }
+  const [availableRecommendations, setAvailableRecommendations] = useState([]);
 
-  const typeToName = (type) => {
-    if (type === "best") return "Best Overall";
-    if (type === "value") return "Best Value - Top Genetics";
-    if (type === "exotic") return "Most Exotic";
-    if (type === "similar") return `Because You Bought: ${originalMenuItemName}`;
-    return "";
-  }
-
-  const OuterContainer = styled.div`
-    background: ${outerColor[type]};
-    padding: 6px;
-    border-radius: 30px;
-    max-width: 1410px;
-    margin-inline: auto;
-  `;
-
-  const InnerContainer = styled.div`
-    background: white;
-    border-radius: 30px;
-    margin-inline: auto;
-  `;
-
-  const MessageContainer = styled.div`
-    padding: 3rem;
-    text-align: center;
-  `;
-
-  const Message = styled.p`
-    margin-top: 1rem;
-    color: rgb(75, 85, 99);
-  `;
-
-  const Header = styled.h2`
-    color: white;
-    font-size: 40px;
-    margin: 20px;
-    padding: 0;
-    line-height: 1;
-    font-weight: 800;
-    text-transform: uppercase;
-  `;
-
-  const ItemsContainer = styled.div`
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: row;
-    gap: 1.5rem;
-  `;
-
-  const Item = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-  `;
+  const progressCircle = useRef(null);
+  const progressContent = useRef(null);
+  const onAutoplayTimeLeft = (s, time, progress) => {
+    progressCircle.current.style.setProperty('--progress', 1 - progress);
+    progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
+  };
 
   useEffect(() => {
-    const fetchRecommendations = async () => {
-      setLoading(true);
-      setError(null);
-      
+    const fetchAvailableRecommendations = async () => {
       try {
         const response = await fetch(
-          `${baseUrl}/${storeId}/recommendations?type=${type}&min_grams=${mininumGrams}&max_grams=${maximumGrams}&min_price=${minimumPrice}&max_price=${maximumPrice}&original_id=${originalMenuItemId}&count=${count}`
+          `${baseUrl}/${storeSlug}/users/${userId}/recommendations/${productType}`
         );
         
         if (!response.ok) {
@@ -98,65 +36,54 @@ export default function Recommendations({
         }
         
         const data = await response.json();
-        setRecommendations(data.recommendations);
-        if (data.original) {
-          setOriginalMenuItemName(`${data.original.brand} ${data.original.strain}`);
-        } else {
-          setOriginalMenuItemName(null);
-        }
+        setAvailableRecommendations(data);
       } catch (err) {
         setError(err.message);
         setRecommendations(null);
       } finally {
         setLoading(false);
       }
-    };
+    }
 
-    fetchRecommendations();
-  }, [storeId, type, mininumGrams, maximumGrams, minimumPrice, maximumPrice, count, baseUrl, originalMenuItemId]);
+    if (userId === null) {
+      setAvailableRecommendations([]);
+    } else {
+      fetchAvailableRecommendations();
+    }
+  }, [userId]);
 
   return (
-    <OuterContainer>
-      <Header>{typeToName(type)}</Header>
-      <InnerContainer>
-        {loading && (
-          <MessageContainer>
-            {/* <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div> */}
-            <Message>Loading recommendations...</Message>
-          </MessageContainer>
-        )}
-
-        {error && type === "similar" && originalMenuItemId === null && (
-          <MessageContainer>
-            <Message>No original item selected to do a recommendation of similar items</Message>
-          </MessageContainer>
-        )}
-
-        {!loading && !error && (!recommendations || recommendations.length === 0) && (
-          <MessageContainer>
-            <Message>No recommendations found</Message>
-          </MessageContainer>
-        )}
-
-        {!loading && !error && recommendations && (
-          <ItemsContainer>
-            {recommendations.map((item, index) => (
-              <Item key={index}>
-                {index === 0 &&
-                <FirstItemLabel height={300} style={{ color: outerColor[type], opacity: 0.5, marginBottom: "50px" }} />
-                }
-                {index === 1 &&
-                <SecondItemLabel height={300} style={{ color: outerColor[type], opacity: 0.5, marginBottom: "50px" }} />
-                }
-                {index === 2 &&
-                <ThirdItemLabel height={300} style={{ color: outerColor[type], opacity: 0.5, marginBottom: "50px" }} />
-              }
-              <MenuItem item={item} />
-              </Item>
-            ))}
-          </ItemsContainer>
-        )}
-      </InnerContainer>
-    </OuterContainer>
+    <Swiper autoplay={{delay: 10000, disableOnInteraction: true}}
+            pagination={{clickable: true}} 
+            loop={true} 
+            modules={[Autoplay, Navigation, Pagination]} 
+            centeredSlides={true}
+            spaceBetween={30}
+            onAutoplayTimeLeft={onAutoplayTimeLeft}>
+      <SwiperSlide>
+        <RecommendationsList
+          storeSlug={storeSlug}
+          productType={productType}
+          type="value"
+          baseUrl={baseUrl}
+          onAddToCart={onAddToCart}
+        />
+      </SwiperSlide>
+      <SwiperSlide>
+        <RecommendationsList
+          storeSlug={storeSlug}
+          productType={productType}
+          type="exotic"
+          baseUrl={baseUrl}
+          onAddToCart={onAddToCart}
+        />
+      </SwiperSlide>
+      <div className="autoplay-progress" slot="container-end">
+        <svg viewBox="0 0 48 48" ref={progressCircle}>
+          <circle cx="24" cy="24" r="20"></circle>
+        </svg>
+        <span ref={progressContent}></span>
+      </div>
+    </Swiper>
   );
 }

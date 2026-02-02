@@ -10,7 +10,8 @@ import terpinoleneImage from './assets/terpinolene.png';
 
 export default function MenuItem({
   index,
-  item
+  item,
+  onAddToCart = null
 }) {
 
   const terpImageMap = {
@@ -23,9 +24,8 @@ export default function MenuItem({
   };
 
   const Container = styled.div`
-    border-color: #cecece;
     background: #ffffff;
-    border-width: 2px;
+    border: 2px solid #cecece;
     border-radius: 30px;
     text-align: center;
     overflow: hidden;
@@ -36,20 +36,20 @@ export default function MenuItem({
   `;
 
   const StrainName = styled.div`
-    font-size: 24px;
+    font-size: 125%;
     font-weight: 700;
     color: #e4002b;
     margin-bottom: 0.5em;
   `;
 
   const StrainInfo = styled.div`
-    font-size: 18px;
+    font-size: 100%;
     font-weight: 500;
     text-transform: uppercase;
   `;
 
   const BrandName = styled.div`
-    font-size: 18px;
+    font-size: 100%;
     font-weight: 500;
     text-transform: uppercase;
     color: #e4002b;
@@ -57,12 +57,12 @@ export default function MenuItem({
   `;
 
   const Price = styled.div`
-    font-size: 24px;
+    font-size: 125%;
     font-weight: 700;
   `;
 
   const PackageSize = styled.div`
-    font-size: 15px;
+    font-size: 100%;
     font-weight: 500;
   `;
 
@@ -81,7 +81,7 @@ export default function MenuItem({
 
   const TerpsLabel = styled.div`
     color: #adadad;
-    font-size: 11px;
+    font-size: 75%;
     font-weight: 600;
     text-transform: uppercase;
   `;
@@ -92,10 +92,14 @@ export default function MenuItem({
     background-color: #e4002b;
     border-radius: 32px;
     color: white;
-    font-size: 16px;
+    font-size: 100%;
     font-weight: 700;
     text-transform: uppercase;
     padding: 10px 20px;
+    cursor: pointer;
+    &:hover {
+      background-color: #bf0030;
+    }
   `;
 
   const ItemImage = styled.img`
@@ -124,7 +128,7 @@ export default function MenuItem({
           ))}
         </TerpeneContainer>
         <TerpsLabel>Dominant Terps</TerpsLabel>
-        <AddToCartButton>Add to Cart</AddToCartButton>
+        <AddToCartButton onClick={() => onAddToCart(item)}>Add to Cart</AddToCartButton>
       </InnerContainer>
     </Container>
   );

@@ -8,7 +8,8 @@
     ".": {
       "import": "./dist/little-dragon-recommendations.es.js",
       "require": "./dist/little-dragon-recommendations.umd.js"
-    }
+    },
+    "./css": "./dist/style.css"
   },
   "files": [
     "dist"
@@ -43,6 +44,7 @@
     "eslint-plugin-react-refresh": "^0.4.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "swiper": "^12.1.0",
     "vite": "^5.2.0",
     "vite-plugin-dts": "^3.8.1",
     "vite-plugin-svgr": "^4.5.0"
