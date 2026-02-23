@@ -127,7 +127,9 @@ export default function RecommendationsList({
     <OuterContainer>
       <Header>
         <Tooltip title={headerTooltip(type)} arrow>
-          {typeToName(type)}
+          <div>
+            {typeToName(type)}
+          </div>
         </Tooltip>
       </Header>
       <InnerContainer>

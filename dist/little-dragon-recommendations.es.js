@@ -196,18 +196,18 @@ function el() {
         j < 0 && h("disabledDepth fell below zero. This is a bug in React. Please file an issue.");
       }
     }
-    var Y = m.ReactCurrentDispatcher, K;
+    var Y = m.ReactCurrentDispatcher, X;
     function U(E, N, Z) {
       {
-        if (K === void 0)
+        if (X === void 0)
           try {
             throw Error();
           } catch (se) {
             var $ = se.stack.trim().match(/\n( *(at )?)/);
-            K = $ && $[1] || "";
+            X = $ && $[1] || "";
           }
         return `
-` + K + E;
+` + X + E;
       }
     }
     var re = !1, te;
@@ -633,7 +633,7 @@ React keys must be passed directly to JSX without using spread:
   }()), hr;
 }
 process.env.NODE_ENV === "production" ? gi.exports = $s() : gi.exports = el();
-var X = gi.exports;
+var K = gi.exports;
 function fo(e) {
   return e !== null && typeof e == "object" && "constructor" in e && e.constructor === Object;
 }
@@ -4129,7 +4129,7 @@ function ou() {
     function Y(B) {
       return x(B) === g;
     }
-    function K(B) {
+    function X(B) {
       return x(B) === A;
     }
     function U(B) {
@@ -4144,7 +4144,7 @@ function ou() {
     function he(B) {
       return x(B) === d;
     }
-    ce.AsyncMode = S, ce.ConcurrentMode = w, ce.ContextConsumer = T, ce.ContextProvider = I, ce.Element = V, ce.ForwardRef = P, ce.Fragment = M, ce.Lazy = p, ce.Memo = R, ce.Portal = k, ce.Profiler = j, ce.StrictMode = G, ce.Suspense = D, ce.isAsyncMode = J, ce.isConcurrentMode = O, ce.isContextConsumer = H, ce.isContextProvider = z, ce.isElement = _, ce.isForwardRef = q, ce.isFragment = Q, ce.isLazy = Y, ce.isMemo = K, ce.isPortal = U, ce.isProfiler = re, ce.isStrictMode = te, ce.isSuspense = he, ce.isValidElementType = b, ce.typeOf = x;
+    ce.AsyncMode = S, ce.ConcurrentMode = w, ce.ContextConsumer = T, ce.ContextProvider = I, ce.Element = V, ce.ForwardRef = P, ce.Fragment = M, ce.Lazy = p, ce.Memo = R, ce.Portal = k, ce.Profiler = j, ce.StrictMode = G, ce.Suspense = D, ce.isAsyncMode = J, ce.isConcurrentMode = O, ce.isContextConsumer = H, ce.isContextProvider = z, ce.isElement = _, ce.isForwardRef = q, ce.isFragment = Q, ce.isLazy = Y, ce.isMemo = X, ce.isPortal = U, ce.isProfiler = re, ce.isStrictMode = te, ce.isSuspense = he, ce.isValidElementType = b, ce.typeOf = x;
   }()), ce;
 }
 process.env.NODE_ENV === "production" ? Ei.exports = iu() : Ei.exports = ou();
@@ -4766,28 +4766,28 @@ function Tu() {
     function v(O) {
       if (process.env.NODE_ENV !== "production")
         var H = {}, z = 0;
-      function _(Q, Y, K, U, re, te, he) {
-        if (U = U || y, te = te || K, he !== r) {
+      function _(Q, Y, X, U, re, te, he) {
+        if (U = U || y, te = te || X, he !== r) {
           if (s) {
             var B = new Error(
               "Calling PropTypes validators directly is not supported by the `prop-types` package. Use `PropTypes.checkPropTypes()` to call them. Read more at http://fb.me/use-check-prop-types"
             );
             throw B.name = "Invariant Violation", B;
           } else if (process.env.NODE_ENV !== "production" && typeof console < "u") {
-            var we = U + ":" + K;
+            var we = U + ":" + X;
             !H[we] && // Avoid spamming the console because they are often not actionable except for lib authors
             z < 3 && (o(
               "You are manually calling a React.PropTypes validation function for the `" + te + "` prop on `" + U + "`. This is deprecated and will throw in the standalone `prop-types` package. You may be seeing this warning due to a third-party PropTypes library. See https://fb.me/react-warning-dont-call-proptypes for details."
             ), H[we] = !0, z++);
           }
         }
-        return Y[K] == null ? Q ? Y[K] === null ? new f("The " + re + " `" + te + "` is marked as required " + ("in `" + U + "`, but its value is `null`.")) : new f("The " + re + " `" + te + "` is marked as required in " + ("`" + U + "`, but its value is `undefined`.")) : null : O(Y, K, U, re, te);
+        return Y[X] == null ? Q ? Y[X] === null ? new f("The " + re + " `" + te + "` is marked as required " + ("in `" + U + "`, but its value is `null`.")) : new f("The " + re + " `" + te + "` is marked as required in " + ("`" + U + "`, but its value is `undefined`.")) : null : O(Y, X, U, re, te);
       }
       var q = _.bind(null, !1);
       return q.isRequired = _.bind(null, !0), q;
     }
     function m(O) {
-      function H(z, _, q, Q, Y, K) {
+      function H(z, _, q, Q, Y, X) {
         var U = z[_], re = G(U);
         if (re !== O) {
           var te = D(U);
@@ -4807,13 +4807,13 @@ function Tu() {
       function H(z, _, q, Q, Y) {
         if (typeof O != "function")
           return new f("Property `" + Y + "` of component `" + q + "` has invalid PropType notation inside arrayOf.");
-        var K = z[_];
-        if (!Array.isArray(K)) {
-          var U = G(K);
+        var X = z[_];
+        if (!Array.isArray(X)) {
+          var U = G(X);
           return new f("Invalid " + Q + " `" + Y + "` of type " + ("`" + U + "` supplied to `" + q + "`, expected an array."));
         }
-        for (var re = 0; re < K.length; re++) {
-          var te = O(K, re, q, Q, Y + "[" + re + "]", r);
+        for (var re = 0; re < X.length; re++) {
+          var te = O(X, re, q, Q, Y + "[" + re + "]", r);
           if (te instanceof Error)
             return te;
         }
@@ -4825,8 +4825,8 @@ function Tu() {
       function O(H, z, _, q, Q) {
         var Y = H[z];
         if (!l(Y)) {
-          var K = G(Y);
-          return new f("Invalid " + q + " `" + Q + "` of type " + ("`" + K + "` supplied to `" + _ + "`, expected a single ReactElement."));
+          var X = G(Y);
+          return new f("Invalid " + q + " `" + Q + "` of type " + ("`" + X + "` supplied to `" + _ + "`, expected a single ReactElement."));
         }
         return null;
       }
@@ -4836,8 +4836,8 @@ function Tu() {
       function O(H, z, _, q, Q) {
         var Y = H[z];
         if (!e.isValidElementType(Y)) {
-          var K = G(Y);
-          return new f("Invalid " + q + " `" + Q + "` of type " + ("`" + K + "` supplied to `" + _ + "`, expected a single ReactElement type."));
+          var X = G(Y);
+          return new f("Invalid " + q + " `" + Q + "` of type " + ("`" + X + "` supplied to `" + _ + "`, expected a single ReactElement type."));
         }
         return null;
       }
@@ -4846,8 +4846,8 @@ function Tu() {
     function w(O) {
       function H(z, _, q, Q, Y) {
         if (!(z[_] instanceof O)) {
-          var K = O.name || y, U = J(z[_]);
-          return new f("Invalid " + Q + " `" + Y + "` of type " + ("`" + U + "` supplied to `" + q + "`, expected ") + ("instance of `" + K + "`."));
+          var X = O.name || y, U = J(z[_]);
+          return new f("Invalid " + Q + " `" + Y + "` of type " + ("`" + U + "` supplied to `" + q + "`, expected ") + ("instance of `" + X + "`."));
         }
         return null;
       }
@@ -4859,14 +4859,14 @@ function Tu() {
           "Invalid arguments supplied to oneOf, expected an array, got " + arguments.length + " arguments. A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z])."
         ) : o("Invalid argument supplied to oneOf, expected an array.")), a;
       function H(z, _, q, Q, Y) {
-        for (var K = z[_], U = 0; U < O.length; U++)
-          if (g(K, O[U]))
+        for (var X = z[_], U = 0; U < O.length; U++)
+          if (g(X, O[U]))
             return null;
         var re = JSON.stringify(O, function(he, B) {
           var we = D(B);
           return we === "symbol" ? String(B) : B;
         });
-        return new f("Invalid " + Q + " `" + Y + "` of value `" + String(K) + "` " + ("supplied to `" + q + "`, expected one of " + re + "."));
+        return new f("Invalid " + Q + " `" + Y + "` of value `" + String(X) + "` " + ("supplied to `" + q + "`, expected one of " + re + "."));
       }
       return v(H);
     }
@@ -4874,12 +4874,12 @@ function Tu() {
       function H(z, _, q, Q, Y) {
         if (typeof O != "function")
           return new f("Property `" + Y + "` of component `" + q + "` has invalid PropType notation inside objectOf.");
-        var K = z[_], U = G(K);
+        var X = z[_], U = G(X);
         if (U !== "object")
           return new f("Invalid " + Q + " `" + Y + "` of type " + ("`" + U + "` supplied to `" + q + "`, expected an object."));
-        for (var re in K)
-          if (n(K, re)) {
-            var te = O(K, re, q, Q, Y + "." + re, r);
+        for (var re in X)
+          if (n(X, re)) {
+            var te = O(X, re, q, Q, Y + "." + re, r);
             if (te instanceof Error)
               return te;
           }
@@ -4897,15 +4897,15 @@ function Tu() {
             "Invalid argument supplied to oneOfType. Expected an array of check functions, but received " + W(z) + " at index " + H + "."
           ), a;
       }
-      function _(q, Q, Y, K, U) {
+      function _(q, Q, Y, X, U) {
         for (var re = [], te = 0; te < O.length; te++) {
-          var he = O[te], B = he(q, Q, Y, K, U, r);
+          var he = O[te], B = he(q, Q, Y, X, U, r);
           if (B == null)
             return null;
           B.data && n(B.data, "expectedType") && re.push(B.data.expectedType);
         }
         var we = re.length > 0 ? ", expected one of type [" + re.join(", ") + "]" : "";
-        return new f("Invalid " + K + " `" + U + "` supplied to " + ("`" + Y + "`" + we + "."));
+        return new f("Invalid " + X + " `" + U + "` supplied to " + ("`" + Y + "`" + we + "."));
       }
       return v(_);
     }
@@ -4922,14 +4922,14 @@ function Tu() {
     }
     function p(O) {
       function H(z, _, q, Q, Y) {
-        var K = z[_], U = G(K);
+        var X = z[_], U = G(X);
         if (U !== "object")
           return new f("Invalid " + Q + " `" + Y + "` of type `" + U + "` " + ("supplied to `" + q + "`, expected `object`."));
         for (var re in O) {
           var te = O[re];
           if (typeof te != "function")
             return M(q, Q, Y, re, D(te));
-          var he = te(K, re, q, Q, Y + "." + re, r);
+          var he = te(X, re, q, Q, Y + "." + re, r);
           if (he)
             return he;
         }
@@ -4939,7 +4939,7 @@ function Tu() {
     }
     function R(O) {
       function H(z, _, q, Q, Y) {
-        var K = z[_], U = G(K);
+        var X = z[_], U = G(X);
         if (U !== "object")
           return new f("Invalid " + Q + " `" + Y + "` of type `" + U + "` " + ("supplied to `" + q + "`, expected `object`."));
         var re = t({}, z[_], O);
@@ -4952,7 +4952,7 @@ function Tu() {
               "Invalid " + Q + " `" + Y + "` key `" + te + "` supplied to `" + q + "`.\nBad object: " + JSON.stringify(z[_], null, "  ") + `
 Valid keys: ` + JSON.stringify(Object.keys(O), null, "  ")
             );
-          var B = he(K, te, q, Q, Y + "." + te, r);
+          var B = he(X, te, q, Q, Y + "." + te, r);
           if (B)
             return B;
         }
@@ -8294,7 +8294,7 @@ const op = {
   }), R = T(y), k = (j) => {
     f === "auto" && h.start(b.current || 0, j), n && n(S.current, j);
   };
-  return /* @__PURE__ */ X.jsx(v, {
+  return /* @__PURE__ */ K.jsx(v, {
     appear: i,
     in: l,
     nodeRef: S,
@@ -8969,8 +8969,8 @@ function Jp(e) {
     }
     if (I)
       for (var O = g ? 3 : 1, H = function(Q) {
-        var Y = x.find(function(K) {
-          var U = T.get(K);
+        var Y = x.find(function(X) {
+          var U = T.get(X);
           if (U)
             return U.slice(0, Q).every(function(re) {
               return re;
@@ -9100,7 +9100,7 @@ function $p(e) {
       var R, k = x === "y" ? De : Ne, j = x === "y" ? Qe : _e, G = x === "y" ? "height" : "width", D = w[x], W = D + v[k], J = D - v[j], O = A ? -I[G] / 2 : 0, H = h === lr ? T[G] : I[G], z = h === lr ? -I[G] : -T[G], _ = t.elements.arrow, q = A && _ ? eo(_) : {
         width: 0,
         height: 0
-      }, Q = t.modifiersData["arrow#persistent"] ? t.modifiersData["arrow#persistent"].padding : Ms(), Y = Q[k], K = Q[j], U = kr(0, T[G], q[G]), re = b ? T[G] / 2 - O - U - Y - P.mainAxis : H - U - Y - P.mainAxis, te = b ? -T[G] / 2 + O + U + K + P.mainAxis : z + U + K + P.mainAxis, he = t.elements.arrow && Yr(t.elements.arrow), B = he ? x === "y" ? he.clientTop || 0 : he.clientLeft || 0 : 0, we = (R = M == null ? void 0 : M[x]) != null ? R : 0, Pe = D + re - we - B, Le = D + te - we, et = kr(A ? xn(W, Pe) : W, D, A ? Ht(J, Le) : J);
+      }, Q = t.modifiersData["arrow#persistent"] ? t.modifiersData["arrow#persistent"].padding : Ms(), Y = Q[k], X = Q[j], U = kr(0, T[G], q[G]), re = b ? T[G] / 2 - O - U - Y - P.mainAxis : H - U - Y - P.mainAxis, te = b ? -T[G] / 2 + O + U + X + P.mainAxis : z + U + X + P.mainAxis, he = t.elements.arrow && Yr(t.elements.arrow), B = he ? x === "y" ? he.clientTop || 0 : he.clientLeft || 0 : 0, we = (R = M == null ? void 0 : M[x]) != null ? R : 0, Pe = D + re - we - B, Le = D + te - we, et = kr(A ? xn(W, Pe) : W, D, A ? Ht(J, Le) : J);
       w[x] = et, p[x] = et - D;
     }
     if (l) {
@@ -9579,7 +9579,7 @@ const vA = (e) => {
     ownerState: t,
     className: p.root
   });
-  return /* @__PURE__ */ X.jsx(R, {
+  return /* @__PURE__ */ K.jsx(R, {
     ...k,
     children: typeof i == "function" ? i(M) : i
   });
@@ -9620,10 +9620,10 @@ const vA = (e) => {
     onEnter: S,
     onExited: w
   } : void 0;
-  return /* @__PURE__ */ X.jsx(En, {
+  return /* @__PURE__ */ K.jsx(En, {
     disablePortal: l,
     container: T,
-    children: /* @__PURE__ */ X.jsx(CA, {
+    children: /* @__PURE__ */ K.jsx(CA, {
       anchorEl: n,
       direction: a,
       disablePortal: l,
@@ -9808,7 +9808,7 @@ const SA = Zn(Ns, {
     transition: m,
     ...x
   };
-  return /* @__PURE__ */ X.jsx(SA, {
+  return /* @__PURE__ */ K.jsx(SA, {
     as: a,
     direction: n ? "rtl" : "ltr",
     slots: {
@@ -10340,9 +10340,9 @@ const ao = /* @__PURE__ */ F.forwardRef(function(t, r) {
     TransitionComponent: k,
     TransitionProps: j,
     ...G
-  } = n, D = /* @__PURE__ */ F.isValidElement(o) ? o : /* @__PURE__ */ X.jsx("span", {
+  } = n, D = /* @__PURE__ */ F.isValidElement(o) ? o : /* @__PURE__ */ K.jsx("span", {
     children: o
-  }), W = Ss(), J = ns(), [O, H] = F.useState(), [z, _] = F.useState(null), q = F.useRef(!1), Q = y || m, Y = xr(), K = xr(), U = xr(), re = xr(), [te, he] = xA({
+  }), W = Ss(), J = ns(), [O, H] = F.useState(), [z, _] = F.useState(null), q = F.useRef(!1), Q = y || m, Y = xr(), X = xr(), U = xr(), re = xr(), [te, he] = xA({
     controlled: T,
     default: !1,
     name: "Tooltip",
@@ -10376,11 +10376,11 @@ const ao = /* @__PURE__ */ F.forwardRef(function(t, r) {
       });
     }
   ), ft = (ee) => {
-    q.current && ee.type !== "touchstart" || (O && O.removeAttribute("title"), K.clear(), U.clear(), g || an && f ? K.start(an ? f : g, () => {
+    q.current && ee.type !== "touchstart" || (O && O.removeAttribute("title"), X.clear(), U.clear(), g || an && f ? X.start(an ? f : g, () => {
       et(ee);
     }) : et(ee));
   }, rt = (ee) => {
-    K.clear(), U.start(b, () => {
+    X.clear(), U.start(b, () => {
       tt(ee);
     });
   }, [, ze] = F.useState(!1), pt = (ee) => {
@@ -10503,8 +10503,8 @@ const ao = /* @__PURE__ */ F.forwardRef(function(t, r) {
     ownerState: gt,
     ref: _
   });
-  return /* @__PURE__ */ X.jsxs(F.Fragment, {
-    children: [/* @__PURE__ */ F.cloneElement(D, je), /* @__PURE__ */ X.jsx(Ur, {
+  return /* @__PURE__ */ K.jsxs(F.Fragment, {
+    children: [/* @__PURE__ */ F.cloneElement(D, je), /* @__PURE__ */ K.jsx(Ur, {
       as: V ?? oo,
       placement: I,
       anchorEl: m ? {
@@ -10526,13 +10526,13 @@ const ao = /* @__PURE__ */ F.forwardRef(function(t, r) {
       popperOptions: Yn,
       children: ({
         TransitionProps: ee
-      }) => /* @__PURE__ */ X.jsx(Ar, {
+      }) => /* @__PURE__ */ K.jsx(Ar, {
         timeout: W.transitions.duration.shorter,
         ...ee,
         ...mr,
-        children: /* @__PURE__ */ X.jsxs(Kr, {
+        children: /* @__PURE__ */ K.jsxs(Kr, {
           ...Kn,
-          children: [R, i ? /* @__PURE__ */ X.jsx(Xr, {
+          children: [R, i ? /* @__PURE__ */ K.jsx(Xr, {
             ...Xn
           }) : null]
         })
@@ -10857,8 +10857,8 @@ function GA({
   `, v = Se.img`
     margin-inline: auto;
   `, m = () => Object.entries(t.terpenes).sort((h, b) => b[1] - h[1]).map((h) => h[0]).slice(0, 3);
-  return /* @__PURE__ */ X.jsxs(a, { children: [
-    /* @__PURE__ */ X.jsx(
+  return /* @__PURE__ */ K.jsxs(a, { children: [
+    /* @__PURE__ */ K.jsx(
       v,
       {
         src: t.image_url || MA,
@@ -10866,26 +10866,26 @@ function GA({
         height: 218
       }
     ),
-    /* @__PURE__ */ X.jsxs(l, { children: [
-      /* @__PURE__ */ X.jsx(s, { children: t.strain }),
-      /* @__PURE__ */ X.jsxs(c, { children: [
+    /* @__PURE__ */ K.jsxs(l, { children: [
+      /* @__PURE__ */ K.jsx(s, { children: t.strain }),
+      /* @__PURE__ */ K.jsxs(c, { children: [
         "THC: ",
         t.thc_content,
         "% | ",
         t.cannabis_type.toUpperCase()
       ] }),
-      /* @__PURE__ */ X.jsx(u, { children: t.brand }),
-      /* @__PURE__ */ X.jsxs(d, { children: [
+      /* @__PURE__ */ K.jsx(u, { children: t.brand }),
+      /* @__PURE__ */ K.jsxs(d, { children: [
         "$",
         t.price
       ] }),
-      /* @__PURE__ */ X.jsxs(y, { children: [
+      /* @__PURE__ */ K.jsxs(y, { children: [
         t.grams,
         "g"
       ] }),
-      /* @__PURE__ */ X.jsx(A, { children: m().map((h, b) => /* @__PURE__ */ X.jsx(ao, { title: `${i[h]}: ${o[h]}`, arrow: !0, children: /* @__PURE__ */ X.jsx("img", { src: n[h], alt: i[h], width: 53, height: 53 }, h) }, h)) }),
-      /* @__PURE__ */ X.jsx(g, { children: "Terpene Profile" }),
-      /* @__PURE__ */ X.jsx(f, { onClick: () => r(t), children: "Add to Cart" })
+      /* @__PURE__ */ K.jsx(A, { children: m().map((h, b) => /* @__PURE__ */ K.jsx(ao, { title: `${i[h]}: ${o[h]}`, arrow: !0, children: /* @__PURE__ */ K.jsx("img", { src: n[h], alt: i[h], width: 53, height: 53 }, h) }, h)) }),
+      /* @__PURE__ */ K.jsx(g, { children: "Terpene Profile" }),
+      /* @__PURE__ */ K.jsx(f, { onClick: () => r(t), children: "Add to Cart" })
     ] })
   ] });
 }
@@ -10980,17 +10980,17 @@ function va({
         y(!1);
       }
     })();
-  }, [e, r, n, i, o, l, a]), /* @__PURE__ */ X.jsxs(x, { children: [
-    /* @__PURE__ */ X.jsx(I, { children: /* @__PURE__ */ X.jsx(ao, { title: b(r), arrow: !0, children: h(r) }) }),
-    /* @__PURE__ */ X.jsxs(S, { children: [
-      d && /* @__PURE__ */ X.jsx(w, { children: /* @__PURE__ */ X.jsx(T, { children: "Loading recommendations..." }) }),
-      A && r === "similar" && a === null && /* @__PURE__ */ X.jsx(w, { children: /* @__PURE__ */ X.jsx(T, { children: "No original item selected to do a recommendation of similar items" }) }),
-      !d && !A && (!c || c.length === 0) && /* @__PURE__ */ X.jsx(w, { children: /* @__PURE__ */ X.jsx(T, { children: "No recommendations found" }) }),
-      !d && !A && c && /* @__PURE__ */ X.jsx(V, { children: c.map((M, p) => /* @__PURE__ */ X.jsxs(P, { children: [
-        p === 0 && /* @__PURE__ */ X.jsx(BA, { height: 300, style: { color: m[r], opacity: 0.5, marginBottom: "50px" } }),
-        p === 1 && /* @__PURE__ */ X.jsx(HA, { height: 300, style: { color: m[r], opacity: 0.5, marginBottom: "50px" } }),
-        p === 2 && /* @__PURE__ */ X.jsx(JA, { height: 300, style: { color: m[r], opacity: 0.5, marginBottom: "50px" } }),
-        /* @__PURE__ */ X.jsx(GA, { item: M, onAddToCart: s })
+  }, [e, r, n, i, o, l, a]), /* @__PURE__ */ K.jsxs(x, { children: [
+    /* @__PURE__ */ K.jsx(I, { children: /* @__PURE__ */ K.jsx(ao, { title: b(r), arrow: !0, children: /* @__PURE__ */ K.jsx("div", { children: h(r) }) }) }),
+    /* @__PURE__ */ K.jsxs(S, { children: [
+      d && /* @__PURE__ */ K.jsx(w, { children: /* @__PURE__ */ K.jsx(T, { children: "Loading recommendations..." }) }),
+      A && r === "similar" && a === null && /* @__PURE__ */ K.jsx(w, { children: /* @__PURE__ */ K.jsx(T, { children: "No original item selected to do a recommendation of similar items" }) }),
+      !d && !A && (!c || c.length === 0) && /* @__PURE__ */ K.jsx(w, { children: /* @__PURE__ */ K.jsx(T, { children: "No recommendations found" }) }),
+      !d && !A && c && /* @__PURE__ */ K.jsx(V, { children: c.map((M, p) => /* @__PURE__ */ K.jsxs(P, { children: [
+        p === 0 && /* @__PURE__ */ K.jsx(BA, { height: 300, style: { color: m[r], opacity: 0.5, marginBottom: "50px" } }),
+        p === 1 && /* @__PURE__ */ K.jsx(HA, { height: 300, style: { color: m[r], opacity: 0.5, marginBottom: "50px" } }),
+        p === 2 && /* @__PURE__ */ K.jsx(JA, { height: 300, style: { color: m[r], opacity: 0.5, marginBottom: "50px" } }),
+        /* @__PURE__ */ K.jsx(GA, { item: M, onAddToCart: s })
       ] }, p)) })
     ] })
   ] });
@@ -11509,7 +11509,7 @@ function XA({
         setLoading(!1);
       }
     })();
-  }, [i]), /* @__PURE__ */ X.jsxs(
+  }, [i]), /* @__PURE__ */ K.jsxs(
     Na,
     {
       autoplay: { delay: 1e4, disableOnInteraction: !0 },
@@ -11520,7 +11520,7 @@ function XA({
       spaceBetween: 30,
       onAutoplayTimeLeft: c,
       children: [
-        /* @__PURE__ */ X.jsx(bi, { children: /* @__PURE__ */ X.jsx(
+        /* @__PURE__ */ K.jsx(bi, { children: /* @__PURE__ */ K.jsx(
           va,
           {
             storeSlug: e,
@@ -11530,7 +11530,7 @@ function XA({
             onAddToCart: n
           }
         ) }),
-        /* @__PURE__ */ X.jsx(bi, { children: /* @__PURE__ */ X.jsx(
+        /* @__PURE__ */ K.jsx(bi, { children: /* @__PURE__ */ K.jsx(
           va,
           {
             storeSlug: e,
@@ -11540,9 +11540,9 @@ function XA({
             onAddToCart: n
           }
         ) }),
-        /* @__PURE__ */ X.jsxs("div", { className: "autoplay-progress", slot: "container-end", children: [
-          /* @__PURE__ */ X.jsx("svg", { viewBox: "0 0 48 48", ref: l, children: /* @__PURE__ */ X.jsx("circle", { cx: "24", cy: "24", r: "20" }) }),
-          /* @__PURE__ */ X.jsx("span", { ref: s })
+        /* @__PURE__ */ K.jsxs("div", { className: "autoplay-progress", slot: "container-end", children: [
+          /* @__PURE__ */ K.jsx("svg", { viewBox: "0 0 48 48", ref: l, children: /* @__PURE__ */ K.jsx("circle", { cx: "24", cy: "24", r: "20" }) }),
+          /* @__PURE__ */ K.jsx("span", { ref: s })
         ] })
       ]
     }
