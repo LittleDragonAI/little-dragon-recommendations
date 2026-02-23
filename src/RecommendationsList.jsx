@@ -30,10 +30,15 @@ export default function RecommendationsList({
 
   const typeToName = (type) => {
     if (type === "best") return "Best Overall";
-    if (type === "value") return "Best Value - Top Genetics";
-    if (type === "exotic") return "Most Exotic";
+    if (type === "value") return "Best Value - High Quality Terpene Profiles";
+    if (type === "exotic") return "Rare & Standout Terpene Profiles";
     if (type === "similar") return `Because You Bought: ${originalMenuItemName}`;
     return "";
+  }
+
+  const headerTooltip = (type) => {
+    if (type === "similar") return "Curated recommendations inspired by your recent purchases. More of what you're likely to love";
+    return "Terpenes give Cannabis its aroma, flavor & quality";
   }
 
   const OuterContainer = styled.div`
@@ -119,7 +124,11 @@ export default function RecommendationsList({
 
   return (
     <OuterContainer>
-      <Header>{typeToName(type)}</Header>
+      <Header>
+        <Tooltip title={headerTooltip(type)} arrow>
+          {typeToName(type)}
+        </Tooltip>
+      </Header>
       <InnerContainer>
         {loading && (
           <MessageContainer>

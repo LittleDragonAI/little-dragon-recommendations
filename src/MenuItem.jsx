@@ -1,10 +1,13 @@
 import styled from '@emotion/styled';
 import Tooltip from '@mui/material/Tooltip';
 import fallbackImage from './assets/fallback-image.jpg';
+import bisabololImage from './assets/bisabolol.png';
 import caryophyleneImage from './assets/caryophylene.png';
+import humuleneImage from './assets/humulene.png';
 import limoneneImage from './assets/limonene.png';
 import linaloolImage from './assets/linalool.png';
 import myrceneImage from './assets/myrcene.png';
+import ocimeneImage from './assets/ocimene.png';
 import pineneImage from './assets/pinene.png';
 import terpinoleneImage from './assets/terpinolene.png';
 
@@ -16,11 +19,70 @@ export default function MenuItem({
 
   const terpImageMap = {
     beta_caryophylene: caryophyleneImage,
+    bisabolol: bisabololImage,
     delta_limonene: limoneneImage,
+    humulene: humuleneImage,
     linalool: linaloolImage,
     myrcene: myrceneImage,
+    ocimene: ocimeneImage,
     pinene: pineneImage,
     terpinolene: terpinoleneImage
+  };
+
+  const terpeneNames = {
+    bisabolol: "Bisabolol",
+    borneol: "Borneol",
+    camphene: "Camphene",
+    three_carene: "3-Carene",
+    alpha_caryophylene: "α-Caryophylene",
+    beta_caryophylene: "β-Caryophylene",
+    alpha_cedrene: "α-Cedrene",
+    cedrol: "Cedrol",
+    eight_cineole: "8-Cineole",
+    eucalyptol: "Eucalyptol",
+    farnesene: "Farnesene",
+    fenchol: "Fenchol",
+    fenchone: "Fenchone",
+    geraniol: "Geraniol",
+    geranyl_a: "Geranyl-A",
+    guaiol: "Guaiol",
+    hexahydrothymol: "Hexahydrothymol",
+    humulene: "Humulene",
+    isoborneol: "Isoborneol",
+    isopulegol: "Isopulegol",
+    delta_limonene: "δ-Limonene",
+    linalool: "Linalool",
+    p_mentha: "P-Mentha",
+    myrcene: "Myrcene",
+    nerol: "Nerol",
+    nerolidol: "Nerolidol",
+    ocimene: "Ocimene",
+    phytol: "Phytol",
+    pinene: "Pinene",
+    beta_pinene: "β-Pinene",
+    pulegone: "Pulegone",
+    sabinene: "Sabinene",
+    sabinene_h: "Sabinene-H",
+    alpha_terpinene: "α-Terpinene",
+    gamma_terpinene: "γ-Terpinene",
+    alpha_terpineol: "α-Terpineol",
+    gamma_terpineol: "γ-Terpineol",
+    terpinolene: "Terpinolene",
+    valencene: "Valencene"
+  };
+
+  const terpeneDescriptions = {
+    delta_limonene: "Hints of Citrus",
+    linalool: "Floral Hints",
+    alpha_caryophylene: "Hints of Pepper",
+    beta_caryophylene: "Hints of Pepper",
+    humulene: "Hints of Spice",
+    myrcene: "Earthy Aroma Hints",
+    ocimene: "Minty Aroma Hints",
+    bisabolol: "Floral & Woody Aroma Hints",
+    terpinolene: "Hints of Herbal & Pine",
+    pinene: "Hints of Pine",
+    beta_pinene: "Hints of Pine",
   };
 
   const Container = styled.div`
@@ -106,6 +168,10 @@ export default function MenuItem({
     margin-inline: auto;
   `;
 
+  const terpenesToShow = () => {
+    return Object.entries(item.terpenes).sort((a, b) => b[1] - a[1]).map((a) => a[0]).slice(0, 3);
+  };
+
   return (
     <Container>
       <ItemImage 
@@ -121,13 +187,13 @@ export default function MenuItem({
         <PackageSize>{item.grams}g</PackageSize>
 
         <TerpeneContainer>
-          {item.dominant_terpenes.map((terpene, idx) => (
-            <Tooltip key={terpene} title={`${terpene.name}: ${terpene.description}`} arrow>
-              <img key={terpene.slug} src={terpImageMap[terpene.slug]} alt={terpene.name} width={53} height={53} />
+          {terpenesToShow().map((terpene, idx) => (
+            <Tooltip key={terpene} title={`${terpeneNames[terpene]}: ${terpeneDescriptions[terpene]}`} arrow>
+              <img key={terpene} src={terpImageMap[terpene]} alt={terpeneNames[terpene]} width={53} height={53} />
             </Tooltip>
           ))}
         </TerpeneContainer>
-        <TerpsLabel>Dominant Terps</TerpsLabel>
+        <TerpsLabel>Terpene Profile</TerpsLabel>
         <AddToCartButton onClick={() => onAddToCart(item)}>Add to Cart</AddToCartButton>
       </InnerContainer>
     </Container>
