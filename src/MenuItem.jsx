@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from '@emotion/styled';
 import Tooltip from '@mui/material/Tooltip';
 import fallbackImage from './assets/fallback-image.jpg';
@@ -16,6 +17,13 @@ export default function MenuItem({
   item,
   onAddToCart = null
 }) {
+  const [added, setAdded] = useState(false);
+
+  const handleAddToCart = () => {
+    onAddToCart(item);
+    setAdded(true);
+    setTimeout(() => setAdded(false), 2000);
+  };
 
   const terpImageMap = {
     beta_caryophylene: caryophyleneImage,
@@ -194,7 +202,7 @@ export default function MenuItem({
           ))}
         </TerpeneContainer>
         <TerpsLabel>Terpene Profile</TerpsLabel>
-        <AddToCartButton onClick={() => onAddToCart(item)}>Add to Cart</AddToCartButton>
+        <AddToCartButton onClick={handleAddToCart}>{added ? 'Added' : 'Add to Cart'}</AddToCartButton>
       </InnerContainer>
     </Container>
   );
