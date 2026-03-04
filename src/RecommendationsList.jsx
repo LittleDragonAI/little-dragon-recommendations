@@ -6,6 +6,67 @@ import FirstItemLabel from './assets/1.svg?react';
 import SecondItemLabel from './assets/2.svg?react';
 import ThirdItemLabel from './assets/3.svg?react';
 
+const outerColor = {
+  value: "#32936f",
+  exotic: "#2274a5",
+  similar: "#e4002b",
+  best: "#ffbf00"
+}
+
+const headerTooltip = (type) => {
+  if (type === "similar") return "Curated recommendations inspired by your recent purchases. More of what you're likely to love";
+  return "Terpenes give Cannabis its aroma, flavor & quality";
+}
+
+const OuterContainer = styled.div`
+  padding: 6px;
+  border-radius: 30px;
+  max-width: 1410px;
+  margin-inline: auto;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+`;
+
+const InnerContainer = styled.div`
+  background: white;
+  border-radius: 30px;
+  margin-inline: auto;
+`;
+
+const MessageContainer = styled.div`
+  padding: 3rem;
+  text-align: center;
+`;
+
+const Message = styled.p`
+  margin-top: 1rem;
+  color: rgb(75, 85, 99);
+`;
+
+const Header = styled.h2`
+  color: white;
+  font-size: 150%;
+  margin: 20px;
+  padding: 0;
+  line-height: 1;
+  font-weight: 800;
+  text-transform: uppercase;
+`;
+
+const ItemsContainer = styled.div`
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  justify-content: center;
+`;
+
+const Item = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+`;
+
 export default function RecommendationsList({
     storeSlug, 
     productType,
@@ -22,13 +83,6 @@ export default function RecommendationsList({
   const [error, setError] = useState(null);
   const [originalMenuItemName, setOriginalMenuItemName] = useState('');
 
-  const outerColor = {
-    value: "#32936f",
-    exotic: "#2274a5",
-    similar: "#e4002b",
-    best: "#ffbf00"
-  }
-
   const typeToName = (type) => {
     if (type === "best") return "Best Overall";
     if (type === "value") return "Best Value - High Quality Terpene Profiles";
@@ -36,61 +90,6 @@ export default function RecommendationsList({
     if (type === "similar") return `Because You Bought: ${originalMenuItemName}`;
     return "";
   }
-
-  const headerTooltip = (type) => {
-    if (type === "similar") return "Curated recommendations inspired by your recent purchases. More of what you're likely to love";
-    return "Terpenes give Cannabis its aroma, flavor & quality";
-  }
-
-  const OuterContainer = styled.div`
-    background: ${outerColor[type]};
-    padding: 6px;
-    border-radius: 30px;
-    max-width: 1410px;
-    margin-inline: auto;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
-  `;
-
-  const InnerContainer = styled.div`
-    background: white;
-    border-radius: 30px;
-    margin-inline: auto;
-  `;
-
-  const MessageContainer = styled.div`
-    padding: 3rem;
-    text-align: center;
-  `;
-
-  const Message = styled.p`
-    margin-top: 1rem;
-    color: rgb(75, 85, 99);
-  `;
-
-  const Header = styled.h2`
-    color: white;
-    font-size: 150%;
-    margin: 20px;
-    padding: 0;
-    line-height: 1;
-    font-weight: 800;
-    text-transform: uppercase;
-  `;
-
-  const ItemsContainer = styled.div`
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: row;
-    gap: 1.5rem;
-    justify-content: center;
-  `;
-
-  const Item = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: flex-end;
-  `;
 
   useEffect(() => {
     const fetchRecommendations = async () => {
@@ -125,7 +124,7 @@ export default function RecommendationsList({
   }, [storeSlug, type, minimumPrice, maximumPrice, count, baseUrl, originalMenuItemId]);
 
   return (
-    <OuterContainer>
+    <OuterContainer style={{ background: `${outerColor[type]}` }}>
       <Header>
         <Tooltip title={headerTooltip(type)} arrow>
           <div>
