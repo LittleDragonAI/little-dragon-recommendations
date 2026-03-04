@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from './MenuItem';
@@ -59,12 +59,72 @@ const ItemsContainer = styled.div`
   flex-direction: row;
   gap: 1.5rem;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    justify-content: flex-start;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 `;
 
 const Item = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-end;
+
+  @media (max-width: 768px) {
+    scroll-snap-align: center;
+    flex-shrink: 0;
+    width: calc(100vw - 6rem);
+    justify-content: center;
+  }
+`;
+
+const CarouselWrapper = styled.div`
+  position: relative;
+`;
+
+const carouselButtonBase = `
+  display: none;
+
+  @media (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    cursor: pointer;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+`;
+
+const CarouselButtonLeft = styled.button`
+  ${carouselButtonBase}
+  @media (max-width: 768px) {
+    left: 4px;
+  }
+`;
+
+const CarouselButtonRight = styled.button`
+  ${carouselButtonBase}
+  @media (max-width: 768px) {
+    right: 4px;
+  }
 `;
 
 export default function RecommendationsList({
@@ -82,6 +142,17 @@ export default function RecommendationsList({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [originalMenuItemName, setOriginalMenuItemName] = useState('');
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
+  const scrollRef = useRef(null);
+
+  const updateScrollButtons = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    setCanScrollLeft(el.scrollLeft > 50);
+    setCanScrollRight(maxScroll > 0 && el.scrollLeft < maxScroll - 50);
+  };
 
   const typeToName = (type) => {
     if (type === "best") return "Best Overall";
@@ -123,6 +194,14 @@ export default function RecommendationsList({
     fetchRecommendations();
   }, [storeSlug, type, minimumPrice, maximumPrice, count, baseUrl, originalMenuItemId]);
 
+  useLayoutEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    updateScrollButtons();
+    el.addEventListener('scroll', updateScrollButtons, { passive: true });
+    return () => el.removeEventListener('scroll', updateScrollButtons);
+  }, [recommendations, loading]);
+
   return (
     <OuterContainer style={{ background: `${outerColor[type]}` }}>
       <Header>
@@ -153,22 +232,26 @@ export default function RecommendationsList({
         )}
 
         {!loading && !error && recommendations && (
-          <ItemsContainer>
-            {recommendations.map((item, index) => (
-              <Item key={index}>
-                {index === 0 &&
-                <FirstItemLabel height={300} style={{ color: outerColor[type], opacity: 0.5, marginBottom: "50px" }} />
-                }
-                {index === 1 &&
-                <SecondItemLabel height={300} style={{ color: outerColor[type], opacity: 0.5, marginBottom: "50px" }} />
-                }
-                {index === 2 &&
-                <ThirdItemLabel height={300} style={{ color: outerColor[type], opacity: 0.5, marginBottom: "50px" }} />
-              }
-              <MenuItem item={item} onAddToCart={onAddToCart} />
-              </Item>
-            ))}
-          </ItemsContainer>
+          <CarouselWrapper>
+            {canScrollLeft && <CarouselButtonLeft onClick={() => scrollRef.current?.scrollBy({ left: -300, behavior: 'smooth' })}>&#8249;</CarouselButtonLeft>}
+            <ItemsContainer ref={scrollRef}>
+              {recommendations.map((item, index) => (
+                <Item key={index}>
+                  {index === 0 &&
+                  <FirstItemLabel height={300} style={{ color: outerColor[type], opacity: 0.5, marginBottom: "50px" }} />
+                  }
+                  {index === 1 &&
+                  <SecondItemLabel height={300} style={{ color: outerColor[type], opacity: 0.5, marginBottom: "50px" }} />
+                  }
+                  {index === 2 &&
+                  <ThirdItemLabel height={300} style={{ color: outerColor[type], opacity: 0.5, marginBottom: "50px" }} />
+                  }
+                  <MenuItem item={item} onAddToCart={onAddToCart} />
+                </Item>
+              ))}
+            </ItemsContainer>
+            {canScrollRight && <CarouselButtonRight onClick={() => scrollRef.current?.scrollBy({ left: 300, behavior: 'smooth' })}>&#8250;</CarouselButtonRight>}
+          </CarouselWrapper>
         )}
       </InnerContainer>
     </OuterContainer>
