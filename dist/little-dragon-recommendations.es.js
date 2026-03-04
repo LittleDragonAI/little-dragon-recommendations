@@ -8178,6 +8178,7 @@ function fA({
     display: flex;
     flex-direction: row;
     gap: 1.5rem;
+    justify-content: center;
   `, Z = Ce.div`
     display: flex;
     flex-direction: row;
