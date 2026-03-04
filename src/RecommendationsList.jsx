@@ -83,6 +83,7 @@ export default function RecommendationsList({
     display: flex;
     flex-direction: row;
     gap: 1.5rem;
+    justify-content: center;
   `;
 
   const Item = styled.div`
