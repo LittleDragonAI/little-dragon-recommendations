@@ -4,23 +4,30 @@ import Tooltip from '@mui/material/Tooltip';
 import fallbackImage from './assets/fallback-image.jpg';
 import bisabololImage from './assets/bisabolol.png';
 import caryophyleneImage from './assets/caryophylene.png';
+import farneseneImage from './assets/farnesene.png';
 import humuleneImage from './assets/humulene.png';
 import limoneneImage from './assets/limonene.png';
 import linaloolImage from './assets/linalool.png';
 import myrceneImage from './assets/myrcene.png';
+import nerolidolImage from './assets/nerolidol.png';
 import ocimeneImage from './assets/ocimene.png';
 import pineneImage from './assets/pinene.png';
+import terpineolImage from './assets/terpineol.png';
 import terpinoleneImage from './assets/terpinolene.png';
 
 const terpImageMap = {
   beta_caryophylene: caryophyleneImage,
   bisabolol: bisabololImage,
   delta_limonene: limoneneImage,
+  farnesene: farneseneImage,
   humulene: humuleneImage,
   linalool: linaloolImage,
   myrcene: myrceneImage,
+  nerolidol: nerolidolImage,
   ocimene: ocimeneImage,
   pinene: pineneImage,
+  alpha_terpineol: terpineolImage,
+  gamma_terpineol: terpineolImage,
   terpinolene: terpinoleneImage
 };
 
