@@ -7998,17 +7998,21 @@ const tA = "data:image/jpeg;base64,/9j/4SACRXhpZgAATU0AKgAAAAgADAEAAAMAAAABAoAAA
   terpinolene: "Terpinolene",
   valencene: "Valencene"
 }, AA = {
-  delta_limonene: "Hints of Citrus",
-  linalool: "Floral Hints",
-  alpha_caryophylene: "Hints of Pepper",
-  beta_caryophylene: "Hints of Pepper",
-  humulene: "Hints of Spice",
-  myrcene: "Earthy Aroma Hints",
-  ocimene: "Minty Aroma Hints",
-  bisabolol: "Floral & Woody Aroma Hints",
-  terpinolene: "Hints of Herbal & Pine",
-  pinene: "Hints of Pine",
-  beta_pinene: "Hints of Pine"
+  delta_limonene: "Hints of Citrus may be detected",
+  linalool: "Floral Hints may be detected",
+  alpha_caryophylene: "Hints of Pepper may be detected",
+  beta_caryophylene: "Hints of Pepper may be detected",
+  humulene: "Hints of Spice may be detected",
+  myrcene: "Earthy Aroma Hints may be detected",
+  ocimene: "Minty Aroma Hints may be detected",
+  bisabolol: "Floral & Woody Aroma Hints may be detected",
+  terpinolene: "Hints of Herbal & Pine may be detected",
+  pinene: "Hints of Pine may be detected",
+  beta_pinene: "Hints of Pine may be detected",
+  farnesene: "Hints of Apple may be detected",
+  alpha_terpineol: "Hints of Eucalyptus may be detected",
+  gamma_terpineol: "Hints of Eucalyptus may be detected",
+  nerolidol: "Hints of Floral may be detected"
 }, pA = ge.div`
   background: #ffffff;
   border: 2px solid #cecece;
@@ -8104,7 +8108,7 @@ function EA({
         e.grams,
         "g"
       ] }),
-      /* @__PURE__ */ $.jsx(vA, { children: i().map((a, s) => /* @__PURE__ */ $.jsx(Ro, { title: `${Pi[a]}: ${AA[a]}`, arrow: !0, children: /* @__PURE__ */ $.jsx("img", { src: fA[a], alt: Pi[a], width: 53, height: 53 }, a) }, a)) }),
+      /* @__PURE__ */ $.jsx(vA, { children: i().map((a, s) => /* @__PURE__ */ $.jsx(Ro, { title: `${Pi[a]}: ${AA[a]}`, arrow: !0, children: /* @__PURE__ */ $.jsx("img", { src: fA[a], alt: Pi[a], width: 32, height: 32 }, a) }, a)) }),
       /* @__PURE__ */ $.jsx(CA, { children: "Terpene Profile" }),
       /* @__PURE__ */ $.jsx(IA, { onClick: o, children: r ? "Added" : "Add to Cart" })
     ] })

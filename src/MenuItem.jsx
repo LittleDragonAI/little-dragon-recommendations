@@ -67,17 +67,21 @@ const terpeneNames = {
 };
 
 const terpeneDescriptions = {
-  delta_limonene: "Hints of Citrus",
-  linalool: "Floral Hints",
-  alpha_caryophylene: "Hints of Pepper",
-  beta_caryophylene: "Hints of Pepper",
-  humulene: "Hints of Spice",
-  myrcene: "Earthy Aroma Hints",
-  ocimene: "Minty Aroma Hints",
-  bisabolol: "Floral & Woody Aroma Hints",
-  terpinolene: "Hints of Herbal & Pine",
-  pinene: "Hints of Pine",
-  beta_pinene: "Hints of Pine",
+  delta_limonene: "Hints of Citrus may be detected",
+  linalool: "Floral Hints may be detected",
+  alpha_caryophylene: "Hints of Pepper may be detected",
+  beta_caryophylene: "Hints of Pepper may be detected",
+  humulene: "Hints of Spice may be detected",
+  myrcene: "Earthy Aroma Hints may be detected",
+  ocimene: "Minty Aroma Hints may be detected",
+  bisabolol: "Floral & Woody Aroma Hints may be detected",
+  terpinolene: "Hints of Herbal & Pine may be detected",
+  pinene: "Hints of Pine may be detected",
+  beta_pinene: "Hints of Pine may be detected",
+  farnesene: "Hints of Apple may be detected",
+  alpha_terpineol: "Hints of Eucalyptus may be detected",
+  gamma_terpineol: "Hints of Eucalyptus may be detected",
+  nerolidol: "Hints of Floral may be detected",
 };
 
 const Container = styled.div`
@@ -196,7 +200,7 @@ export default function MenuItem({
         <TerpeneContainer>
           {terpenesToShow().map((terpene, idx) => (
             <Tooltip key={terpene} title={`${terpeneNames[terpene]}: ${terpeneDescriptions[terpene]}`} arrow>
-              <img key={terpene} src={terpImageMap[terpene]} alt={terpeneNames[terpene]} width={53} height={53} />
+              <img key={terpene} src={terpImageMap[terpene]} alt={terpeneNames[terpene]} width={32} height={32} />
             </Tooltip>
           ))}
         </TerpeneContainer>
