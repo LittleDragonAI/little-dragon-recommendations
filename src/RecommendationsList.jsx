@@ -129,7 +129,7 @@ const CarouselButtonRight = styled.button`
 
 export default function RecommendationsList({
     storeSlug, 
-    productType,
+    productType = 'flower',
     type = 'value',
     minimumPrice = null,
     maximumPrice = null,
