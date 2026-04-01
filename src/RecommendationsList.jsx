@@ -1,10 +1,10 @@
 import { useState, useEffect, useLayoutEffect, useRef } from 'react';
-import styled from '@emotion/styled';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from './MenuItem';
 import FirstItemLabel from './assets/1.svg?react';
 import SecondItemLabel from './assets/2.svg?react';
 import ThirdItemLabel from './assets/3.svg?react';
+import './style.css';
 
 const outerColor = {
   value: "#32936f",
@@ -17,115 +17,6 @@ const headerTooltip = (type) => {
   if (type === "similar") return "Curated recommendations inspired by your recent purchases. More of what you're likely to love";
   return "Terpenes give Cannabis its aroma, flavor & quality";
 }
-
-const OuterContainer = styled.div`
-  padding: 6px;
-  border-radius: 30px;
-  max-width: 1410px;
-  margin-inline: auto;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
-`;
-
-const InnerContainer = styled.div`
-  background: white;
-  border-radius: 30px;
-  margin-inline: auto;
-`;
-
-const MessageContainer = styled.div`
-  padding: 3rem;
-  text-align: center;
-`;
-
-const Message = styled.p`
-  margin-top: 1rem;
-  color: rgb(75, 85, 99);
-`;
-
-const Header = styled.h2`
-  color: white;
-  font-size: 150%;
-  margin: 20px;
-  padding: 0;
-  line-height: 1;
-  font-weight: 800;
-  text-transform: uppercase;
-`;
-
-const ItemsContainer = styled.div`
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: row;
-  gap: 1.5rem;
-  justify-content: center;
-
-  @media (max-width: 768px) {
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    justify-content: flex-start;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-`;
-
-const Item = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-
-  @media (max-width: 768px) {
-    scroll-snap-align: center;
-    flex-shrink: 0;
-    width: calc(100vw - 6rem);
-    justify-content: center;
-  }
-`;
-
-const CarouselWrapper = styled.div`
-  position: relative;
-`;
-
-const carouselButtonBase = `
-  display: none;
-
-  @media (max-width: 768px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    background: white;
-    border: none;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    cursor: pointer;
-    font-size: 1.4rem;
-    line-height: 1;
-  }
-`;
-
-const CarouselButtonLeft = styled.button`
-  ${carouselButtonBase}
-  @media (max-width: 768px) {
-    left: 4px;
-  }
-`;
-
-const CarouselButtonRight = styled.button`
-  ${carouselButtonBase}
-  @media (max-width: 768px) {
-    right: 4px;
-  }
-`;
 
 export default function RecommendationsList({
     storeSlug, 
@@ -203,40 +94,39 @@ export default function RecommendationsList({
   }, [recommendations, loading]);
 
   return (
-    <OuterContainer style={{ background: `${outerColor[type]}` }}>
-      <Header>
+    <div className='little-dragon-rec-outer-container' style={{ background: `${outerColor[type]}` }}>
+      <h2 className='little-dragon-rec-header'>
         <Tooltip title={headerTooltip(type)} arrow>
           <div>
             {typeToName(type)}
           </div>
         </Tooltip>
-      </Header>
-      <InnerContainer>
+      </h2>
+      <div className='little-dragon-rec-inner-container'>
         {loading && (
-          <MessageContainer>
-            {/* <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div> */}
-            <Message>Loading recommendations...</Message>
-          </MessageContainer>
+          <div className='little-dragon-rec-message-container'>
+            <p className='little-dragon-rec-message'>Loading recommendations...</p>
+          </div>
         )}
 
         {error && type === "similar" && originalMenuItemId === null && (
-          <MessageContainer>
-            <Message>No original item selected to do a recommendation of similar items</Message>
-          </MessageContainer>
+          <div className='little-dragon-rec-message-container'>
+            <p className='little-dragon-rec-message'>No original item selected to do a recommendation of similar items</p>
+          </div>
         )}
 
         {!loading && !error && (!recommendations || recommendations.length === 0) && (
-          <MessageContainer>
-            <Message>No recommendations found</Message>
-          </MessageContainer>
+          <div className='little-dragon-rec-message-container'>
+            <p className='little-dragon-rec-message'>No recommendations found</p>
+          </div>
         )}
 
         {!loading && !error && recommendations && (
-          <CarouselWrapper>
-            {canScrollLeft && <CarouselButtonLeft onClick={() => scrollRef.current?.scrollBy({ left: -300, behavior: 'smooth' })}>&#8249;</CarouselButtonLeft>}
-            <ItemsContainer ref={scrollRef}>
+          <div className='little-dragon-rec-carousel-wrapper'>
+            {canScrollLeft && <button className='little-dragon-rec-carousel-button left' onClick={() => scrollRef.current?.scrollBy({ left: -300, behavior: 'smooth' })}>&#8249;</button>}
+            <div className='little-dragon-rec-items-container' ref={scrollRef}>
               {recommendations.map((item, index) => (
-                <Item key={index}>
+                <div className='little-dragon-rec-item' key={index}>
                   {index === 0 &&
                   <FirstItemLabel height={300} style={{ color: outerColor[type], opacity: 0.5, marginBottom: "50px" }} />
                   }
@@ -247,13 +137,13 @@ export default function RecommendationsList({
                   <ThirdItemLabel height={300} style={{ color: outerColor[type], opacity: 0.5, marginBottom: "50px" }} />
                   }
                   <MenuItem item={item} onAddToCart={onAddToCart} />
-                </Item>
+                </div>
               ))}
-            </ItemsContainer>
-            {canScrollRight && <CarouselButtonRight onClick={() => scrollRef.current?.scrollBy({ left: 300, behavior: 'smooth' })}>&#8250;</CarouselButtonRight>}
-          </CarouselWrapper>
+            </div>
+            {canScrollRight && <button className='little-dragon-rec-carousel-button right' onClick={() => scrollRef.current?.scrollBy({ left: 300, behavior: 'smooth' })}>&#8250;</button>}
+          </div>
         )}
-      </InnerContainer>
-    </OuterContainer>
+      </div>
+    </div>
   );
 }
