@@ -8026,36 +8026,36 @@ function df({
   const [r, n] = Tt(!1), o = () => {
     t(e), n(!0), setTimeout(() => n(!1), 1500);
   }, i = () => Object.entries(e.terpenes).sort((a, s) => s[1] - a[1]).map((a) => a[0]).slice(0, 3);
-  return /* @__PURE__ */ $.jsxs("div", { className: "little-dragon-menu-rec-item-container", children: [
+  return /* @__PURE__ */ $.jsxs("div", { className: "little-dragon-rec-menu-item-container", children: [
     /* @__PURE__ */ $.jsx(
       "img",
       {
-        className: "little-dragon-menu-rec-item-image",
+        className: "little-dragon-rec-menu-item-image",
         src: e.image_url || _A,
         width: 244,
         height: 218
       }
     ),
-    /* @__PURE__ */ $.jsxs("div", { className: "little-dragon-menu-rec-item-inner-container", children: [
-      /* @__PURE__ */ $.jsx("div", { className: "little-dragon-menu-rec-item-strain-name", children: e.strain }),
-      /* @__PURE__ */ $.jsxs("div", { className: "little-dragon-menu-rec-item-strain-info", children: [
+    /* @__PURE__ */ $.jsxs("div", { className: "little-dragon-rec-menu-item-inner-container", children: [
+      /* @__PURE__ */ $.jsx("div", { className: "little-dragon-rec-menu-item-strain-name", children: e.strain }),
+      /* @__PURE__ */ $.jsxs("div", { className: "little-dragon-rec-menu-item-strain-info", children: [
         "THC: ",
         e.thc_content,
         "% | ",
         e.cannabis_type.toUpperCase()
       ] }),
-      /* @__PURE__ */ $.jsx("div", { className: "little-dragon-menu-rec-item-brand-name", children: e.brand }),
-      /* @__PURE__ */ $.jsxs("div", { className: "little-dragon-menu-rec-item-price", children: [
+      /* @__PURE__ */ $.jsx("div", { className: "little-dragon-rec-menu-item-brand-name", children: e.brand }),
+      /* @__PURE__ */ $.jsxs("div", { className: "little-dragon-rec-menu-item-price", children: [
         "$",
         e.price
       ] }),
-      /* @__PURE__ */ $.jsxs("div", { className: "little-dragon-menu-rec-item-package-size", children: [
+      /* @__PURE__ */ $.jsxs("div", { className: "little-dragon-rec-menu-item-package-size", children: [
         e.grams,
         "g"
       ] }),
-      /* @__PURE__ */ $.jsx("div", { className: "little-dragon-menu-rec-item-terpene-container", children: i().map((a, s) => /* @__PURE__ */ $.jsx(wo, { title: `${Wi[a]}: ${pf[a]}`, arrow: !0, children: /* @__PURE__ */ $.jsx("img", { src: ff[a], alt: Wi[a], width: 32, height: 32 }, a) }, a)) }),
-      /* @__PURE__ */ $.jsx("div", { className: "little-dragon-menu-rec-item-terpenes-label", children: "Terpene Profile" }),
-      /* @__PURE__ */ $.jsx("button", { className: "little-dragon-menu-rec-item-add-to-cart-button", onClick: o, children: r ? "Added" : "Add to Cart" })
+      /* @__PURE__ */ $.jsx("div", { className: "little-dragon-rec-menu-item-terpene-container", children: i().map((a, s) => /* @__PURE__ */ $.jsx(wo, { title: `${Wi[a]}: ${pf[a]}`, arrow: !0, children: /* @__PURE__ */ $.jsx("img", { src: ff[a], alt: Wi[a], width: 32, height: 32 }, a) }, a)) }),
+      /* @__PURE__ */ $.jsx("div", { className: "little-dragon-rec-menu-item-terpenes-label", children: "Terpene Profile" }),
+      /* @__PURE__ */ $.jsx("button", { className: "little-dragon-rec-menu-item-add-to-cart-button", onClick: o, children: r ? "Added" : "Add to Cart" })
     ] })
   ] });
 }

@@ -108,28 +108,28 @@ export default function MenuItem({
   };
 
   return (
-    <div className='little-dragon-menu-rec-item-container'>
-      <img className='little-dragon-menu-rec-item-image'
+    <div className='little-dragon-rec-menu-item-container'>
+      <img className='little-dragon-rec-menu-item-image'
         src={item.image_url || fallbackImage}
         width={244}
         height={218}
       />
-      <div className='little-dragon-menu-rec-item-inner-container'>
-        <div className='little-dragon-menu-rec-item-strain-name'>{item.strain}</div>
-        <div className='little-dragon-menu-rec-item-strain-info'>THC: {item.thc_content}% | {item.cannabis_type.toUpperCase()}</div>
-        <div className='little-dragon-menu-rec-item-brand-name'>{item.brand}</div>
-        <div className='little-dragon-menu-rec-item-price'>${item.price}</div>
-        <div className='little-dragon-menu-rec-item-package-size'>{item.grams}g</div>
+      <div className='little-dragon-rec-menu-item-inner-container'>
+        <div className='little-dragon-rec-menu-item-strain-name'>{item.strain}</div>
+        <div className='little-dragon-rec-menu-item-strain-info'>THC: {item.thc_content}% | {item.cannabis_type.toUpperCase()}</div>
+        <div className='little-dragon-rec-menu-item-brand-name'>{item.brand}</div>
+        <div className='little-dragon-rec-menu-item-price'>${item.price}</div>
+        <div className='little-dragon-rec-menu-item-package-size'>{item.grams}g</div>
 
-        <div className='little-dragon-menu-rec-item-terpene-container'>
+        <div className='little-dragon-rec-menu-item-terpene-container'>
           {terpenesToShow().map((terpene, idx) => (
             <Tooltip key={terpene} title={`${terpeneNames[terpene]}: ${terpeneDescriptions[terpene]}`} arrow>
               <img key={terpene} src={terpImageMap[terpene]} alt={terpeneNames[terpene]} width={32} height={32} />
             </Tooltip>
           ))}
         </div>
-        <div className='little-dragon-menu-rec-item-terpenes-label'>Terpene Profile</div>
-        <button className='little-dragon-menu-rec-item-add-to-cart-button' onClick={handleAddToCart}>{added ? 'Added' : 'Add to Cart'}</button>
+        <div className='little-dragon-rec-menu-item-terpenes-label'>Terpene Profile</div>
+        <button className='little-dragon-rec-menu-item-add-to-cart-button' onClick={handleAddToCart}>{added ? 'Added' : 'Add to Cart'}</button>
       </div>
     </div>
   );
