@@ -14,7 +14,9 @@ const outerColor = {
 }
 
 const headerTooltip = (type) => {
-  if (type === "similar") return "Curated recommendations inspired by your recent purchases. More of what you're likely to love";
+  if (type === "similar") return "Curated recommendations inspired by your recent purchases. More of what you're likely to love.";
+  if (type === "value") return "Highest rated terpene profiles per dollar.";
+  if (type === "exotic") return "Highest rated terpene profiles.";
   return "Terpenes give Cannabis its aroma, flavor & quality";
 }
 
