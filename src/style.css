@@ -107,19 +107,19 @@
 
 .little-dragon-rec-menu-item-container {
   background: #ffffff;
-  border: 2px solid #cecece;
+  border: 3px solid #cecece;
   border-radius: 30px;
   text-align: center;
   overflow: hidden;
 }
 
 .little-dragon-rec-menu-item-inner-container {
-  padding: 10px 15px;
+  padding: 15px 15px;
 }
 
 .little-dragon-rec-menu-item-strain-name {
   font-size: 125%;
-  font-weight: 700;
+  font-weight: 900;
   color: #e4002b;
   margin-bottom: 0.5em;
 }
@@ -144,28 +144,31 @@
 }
 
 .little-dragon-rec-menu-item-package-size {
-  font-size: 100%;
-  font-weight: 500;
+  font-size: 90%;
+  font-weight: 300;
 }
 
 .little-dragon-rec-menu-item-terpene-container {
-  margin-top: 10px;
+ margin-top: 10px;
   border-color: #cecece;
-  border-width: 2px;
+  border-width: 3px;
   border-radius: 32px;
-  padding: 5px;
+  border-style: solid;
+  padding: 6px;
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 5px;
   justify-content: center;
   align-items: center;
+
 }
 
 .little-dragon-rec-menu-item-terpenes-label {
-  color: #adadad;
-  font-size: 75%;
-  font-weight: 600;
+color: #adadad;
+  font-size: 70%;
+  font-weight: 500;
   text-transform: uppercase;
+  letter-spacing: 14%;
 }
 
 .little-dragon-rec-menu-item-add-to-cart-button {
@@ -177,8 +180,11 @@
   font-size: 100%;
   font-weight: 700;
   text-transform: uppercase;
-  padding: 10px 20px;
+  padding: 13px 20px;
   cursor: pointer;
+  border-width: 0px !important;
+  border-color: #000000 !important;
+  border-style: solid !important;
 }
 
 .little-dragon-rec-menu-item-add-to-cart-button:hover {
@@ -188,3 +194,48 @@
 .little-dragon-rec-menu-item-image {
   margin-inline: auto;
 }
+
+/* --- Global MUI Tooltip Overrides --- */
+
+.MuiTooltip-tooltip {
+  /* Bubble Design */
+  background-color: #ffffff !important;
+  border-radius: 0px !important; /* Pointy edges */
+  padding: 24px 16px !important;
+  
+  /* Shadow: Dense, pronounced, and more centered */
+  box-shadow: 0px 8px 35px rgba(0, 0, 0, 0.5) !important; 
+  
+  /* Text and Alignment */
+  color: #333333 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  text-align: center !important;
+  
+  /* Retaining the margin hack from previous position */
+  position: relative !important;
+  margin-top: -140px !important; 
+}
+
+/* Hide the native MUI arrow */
+.MuiTooltip-arrow {
+  display: none !important;
+}
+
+/* Custom, Wide-Format Bottom Tail */
+.MuiTooltip-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  /* Wide, shallow triangle: 10px high, 60px base width */
+  border-width: 10px 20px 0 20px; 
+  border-style: solid;
+  border-color: #ffffff transparent transparent transparent;
+}
+
+
+
