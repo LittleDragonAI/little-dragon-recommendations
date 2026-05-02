@@ -10,7 +10,8 @@ const outerColor = {
   value: "#32936f",
   exotic: "#2274a5",
   similar: "#e4002b",
-  best: "#ffbf00"
+  best: "#ffbf00",
+  brand: "#414141"
 }
 
 const headerTooltip = (type) => {
@@ -28,6 +29,8 @@ export default function RecommendationsList({
     maximumPrice = null,
     count = 3,
     originalMenuItemId = null,
+    brand = null,
+    excludeBrands = null,
     baseUrl = 'https://demo-api.littledragon.keithswork.com',
     onAddToCart = null
   }) {
@@ -50,6 +53,7 @@ export default function RecommendationsList({
   const typeToName = (type) => {
     if (type === "best") return "Best Overall";
     if (type === "value") return "Best Value - High Quality Terpene Profiles";
+    if (type === "brand") return `Best of ${brand}`;
     if (type === "exotic") return "Rare & Standout Terpene Profiles";
     if (type === "similar") return `Because You Bought: ${originalMenuItemName}`;
     return "";
@@ -61,8 +65,16 @@ export default function RecommendationsList({
       setError(null);
       
       try {
+        const recommendationType = type === "brand" ? "exotic": type;
+        let params = `type=${recommendationType}`
+        if (minimumPrice !== null) params += `&min_price=${minimumPrice}`;
+        if (maximumPrice !== null) params += `&max_price=${maximumPrice}`;
+        if (originalMenuItemId !== null) params += `&original_id=${originalMenuItemId}`;
+        if (count !== null) params += `&count=${count}`;
+        if (brand !== null) params += `&brand=${brand}`;
+        if (excludeBrands !== null) params += `&exclude_brands=${excludeBrands}`;
         const response = await fetch(
-          `${baseUrl}/${storeSlug}/recommendations/${productType}?type=${type}&min_price=${minimumPrice}&max_price=${maximumPrice}&original_id=${originalMenuItemId}&count=${count}`
+          `${baseUrl}/${storeSlug}/recommendations/${productType}?${params}`
         );
         
         if (!response.ok) {
@@ -85,7 +97,7 @@ export default function RecommendationsList({
     };
 
     fetchRecommendations();
-  }, [storeSlug, type, minimumPrice, maximumPrice, count, baseUrl, originalMenuItemId]);
+  }, [storeSlug, type, minimumPrice, maximumPrice, count, baseUrl, originalMenuItemId, brand, productType]);
 
   useLayoutEffect(() => {
     const el = scrollRef.current;
@@ -98,11 +110,43 @@ export default function RecommendationsList({
   return (
     <div className='little-dragon-rec-outer-container' style={{ background: `${outerColor[type]}` }}>
       <h2 className='little-dragon-rec-header'>
-        <Tooltip title={headerTooltip(type)} arrow>
-          <div>
-            {typeToName(type)}
-          </div>
-        </Tooltip>
+        {type === 'value' && (
+          <>
+            <Tooltip title={headerTooltip(type)} arrow>
+              <span>
+                Best Value
+              </span>
+            </Tooltip>
+            &nbsp;-&nbsp;
+            <Tooltip title={headerTooltip('terpene')} arrow>
+              <span>
+                High Quality Terpene Profiles
+              </span>
+            </Tooltip>
+          </>
+        )}
+        {type === 'exotic' && (
+          <>
+            <Tooltip title={headerTooltip(type)} arrow>
+              <span>
+                Rare &amp; Standout
+              </span>
+            </Tooltip>
+            &nbsp;
+            <Tooltip title={headerTooltip('terpene')} arrow>
+              <span>
+                Terpene Profiles
+              </span>
+            </Tooltip>
+          </>
+        )}
+        {type !== 'value' && type !== 'exotic' && (
+          <Tooltip title={headerTooltip(type)} arrow>
+            <div>
+              {typeToName(type)}
+            </div>
+          </Tooltip>
+        )}
       </h2>
       <div className='little-dragon-rec-inner-container'>
         {loading && (

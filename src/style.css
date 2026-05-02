@@ -40,7 +40,7 @@
   gap: 1.5rem;
   justify-content: center;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1340px) {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
@@ -58,7 +58,7 @@
   flex-direction: row;
   align-items: flex-end;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1340px) {
     scroll-snap-align: center;
     flex-shrink: 0;
     width: calc(100vw - 6rem);
@@ -73,7 +73,7 @@
 .little-dragon-rec-carousel-button {
   display: none;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1340px) {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -94,13 +94,13 @@
 }
 
 .little-dragon-rec-carousel-button.left {
-  @media (max-width: 768px) {
+  @media (max-width: 1340px) {
     left: 4px;
   }
 }
 
 .little-dragon-rec-carousel-button.right {
-  @media (max-width: 768px) {
+  @media (max-width: 1340px) {
     right: 4px;
   }
 }

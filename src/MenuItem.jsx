@@ -35,40 +35,40 @@ const terpeneNames = {
   bisabolol: "Bisabolol",
   borneol: "Borneol",
   camphene: "Camphene",
-  three_carene: "3-Carene",
-  alpha_caryophylene: "α-Caryophylene",
-  beta_caryophylene: "β-Caryophylene",
-  alpha_cedrene: "α-Cedrene",
+  three_carene: "3‑Carene",
+  alpha_caryophylene: "α‑Caryophylene",
+  beta_caryophylene: "β‑Caryophylene",
+  alpha_cedrene: "α‑Cedrene",
   cedrol: "Cedrol",
-  eight_cineole: "8-Cineole",
+  eight_cineole: "8‑Cineole",
   eucalyptol: "Eucalyptol",
   farnesene: "Farnesene",
   fenchol: "Fenchol",
   fenchone: "Fenchone",
   geraniol: "Geraniol",
-  geranyl_a: "Geranyl-A",
+  geranyl_a: "Geranyl‑A",
   guaiol: "Guaiol",
   hexahydrothymol: "Hexahydrothymol",
   humulene: "Humulene",
   isoborneol: "Isoborneol",
   isopulegol: "Isopulegol",
-  delta_limonene: "δ-Limonene",
+  delta_limonene: "δ‑Limonene",
   linalool: "Linalool",
-  p_mentha: "P-Mentha",
+  p_mentha: "P‑Mentha",
   myrcene: "Myrcene",
   nerol: "Nerol",
   nerolidol: "Nerolidol",
   ocimene: "Ocimene",
   phytol: "Phytol",
   pinene: "Pinene",
-  beta_pinene: "β-Pinene",
+  beta_pinene: "β‑Pinene",
   pulegone: "Pulegone",
   sabinene: "Sabinene",
   sabinene_h: "Sabinene-H",
-  alpha_terpinene: "α-Terpinene",
-  gamma_terpinene: "γ-Terpinene",
-  alpha_terpineol: "α-Terpineol",
-  gamma_terpineol: "γ-Terpineol",
+  alpha_terpinene: "α‑Terpinene",
+  gamma_terpinene: "γ‑Terpinene",
+  alpha_terpineol: "α‑Terpineol",
+  gamma_terpineol: "γ‑Terpineol",
   terpinolene: "Terpinolene",
   valencene: "Valencene"
 };
@@ -123,12 +123,14 @@ export default function MenuItem({
 
         <div className='little-dragon-rec-menu-item-terpene-container'>
           {terpenesToShow().map((terpene, idx) => (
-            <Tooltip key={terpene} title={`${terpeneNames[terpene]}: ${terpeneDescriptions[terpene]}`} arrow>
+            <Tooltip key={terpene} title={`${terpeneDescriptions[terpene]} (${terpeneNames[terpene]})`} arrow>
               <img key={terpene} src={terpImageMap[terpene]} alt={terpeneNames[terpene]} width={32} height={32} />
             </Tooltip>
           ))}
         </div>
-        <div className='little-dragon-rec-menu-item-terpenes-label'>Terpene Profile</div>
+        <Tooltip title='Terpenes give Cannabis its aroma, flavor & quality' arrow>
+          <div className='little-dragon-rec-menu-item-terpenes-label'>Terpene Profile</div>
+        </Tooltip>
         <button className='little-dragon-rec-menu-item-add-to-cart-button' onClick={handleAddToCart}>{added ? 'Added' : 'Add to Cart'}</button>
       </div>
     </div>
